@@ -1,47 +1,37 @@
-// **********   ФУНКЦИИ    **********
-
-function outputMessage() {
-   console.log("Hello, World");
-};
-outputMessage();
-
-const consoleMessage = function () {
-   console.log("Hello, friends");
-};
-consoleMessage();
-
-function outputMessageMax(name, age) {
-   console.log("Hello " + name);
-   console.log("My age = " + age);
-};
-outputMessageMax("Max", 30);
-
-(function () {
-   console.log("Hello");
-}());
-
-console.log(consoleMessage);
-
-
-const doNum = function (a, b, callback) {
-   if (typeof a === "number" && typeof b === "number") {
-      callback(a, b);
-   }
+let isNumber = function (n) {
+   return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
-doNum(5, 10, function (a, b) {
-   console.log(a + b);
-});
 
-function one(callback) {
-   setTimeout(function () {
-      console.log(1);
-      callback();
-   }, 1000);
+
+let play = function () {
+
+   let x = 50;
+
+   let number = prompt("Угадай число от 1 до 100");
+
+   if (!isNaN(parseFloat(number)) && isFinite(number)) {
+      function less() {
+         if (Number(number) > x) {
+            alert("Загаданное число меньше");
+            play();
+         } else if (Number(number) < x) {
+            alert("Загаданное число больше");
+            play();
+         } else {
+            alert("Угадал!!!");
+         };
+      };
+      less();
+   } else {
+      let sugg = confirm("Введи число");
+      if (sugg) {
+         play();
+      } else {
+         return
+      };
+   };
+
 };
 
-function two() {
-   console.log(2);
-};
-
-one(two);
+play();
