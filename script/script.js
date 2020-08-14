@@ -2,34 +2,37 @@ let isNumber = function (n) {
    return !isNaN(parseFloat(n)) && isFinite(n);
 };
 
+function rand(min, max) {
+   return Math.round((Math.random() * (max - min)) + min)
+};
 
+let x = rand(1, 100);
+console.log(x);
+
+let number = prompt("Угадай число от 1 до 100");
+console.log(number);
 
 let play = function () {
 
-   let x = 50;
-
-   let number = prompt("Угадай число от 1 до 100");
-
    if (!isNaN(parseFloat(number)) && isFinite(number)) {
-      function less() {
+      function control() {
          if (Number(number) > x) {
-            alert("Загаданное число меньше");
+            number = prompt("Загаданное число меньше");
             play();
          } else if (Number(number) < x) {
-            alert("Загаданное число больше");
+            number = prompt("Загаданное число больше");
             play();
          } else {
-            alert("Угадал!!!");
+            alert("Угадал, волк!!!");
          };
       };
-      less();
+      control();
+   } else if (number === null) {
+      alert("Жаль, прощайте");
+      return
    } else {
-      let sugg = confirm("Введи число");
-      if (sugg) {
-         play();
-      } else {
-         return
-      };
+      number = prompt("Введи число");
+      play();
    };
 
 };
